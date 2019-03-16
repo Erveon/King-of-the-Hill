@@ -12,6 +12,7 @@
 <script>
 import Graphics from '@/graphics/Graphics'
 import isDesktop from '@/utils/isDesktop'
+import KeyCode from 'keycode-js';
 
 export default {
 	name: 'MainMenu',
@@ -33,6 +34,16 @@ export default {
 				}
 			]
 		}
+	},
+	mounted() {
+		window.addEventListener('keyup', (e) => {
+			if (e.keyCode === KeyCode.KEY_ESCAPE) {
+				if(!this.visible) {
+					Graphics.destroy()
+					this.visible = true
+				}
+			}
+		})
 	},
 	beforeMount() {
 		if(isDesktop()) {

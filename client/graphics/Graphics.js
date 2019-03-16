@@ -12,6 +12,7 @@ export default class Graphics {
 	static init() {
 		Graphics.shouldRender = true
 		Graphics.scene = new THREE.Scene()
+		Graphics.scene.background = new THREE.Color(0x89CFF0)
 		Graphics.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
 		Graphics.renderer = new THREE.WebGLRenderer()
 		Graphics.renderer.setSize(window.innerWidth, window.innerHeight)
