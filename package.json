@@ -1,17 +1,30 @@
 {
   "name": "koth",
+  "description": "King of the Hill",
   "version": "0.1.0",
   "private": true,
+  "main": "desktop.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "client": "cross-env NODE_ENV=development nw .",
+	"client:prod": "nw .",
+	"client:build": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ .",
+	"client:build:win": "build --tasks win-x86 --mirror https://dl.nwjs.io/ ."
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "three": "^0.102.1"
+  },
+  "build": {
+	"output": "./desktop/",
+	"files": [
+		"desktop.js",
+		"./dist/**/*"
+	]
   },
   "devDependencies": {
+    "vue": "^2.6.6",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-plugin-unit-mocha": "^3.5.0",
@@ -19,9 +32,12 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
     "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
+    "nw": "^0.37.0",
+    "nwjs-builder-phoenix": "^1.15.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   }
