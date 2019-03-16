@@ -1,8 +1,16 @@
-/*global nw*/
-let target = "/dist/index.html"
+const isDevelopment = process.env.NODE_ENV === "development"
+const target = "/dist/index.html"
 
-if(process.env.NODE_ENV === "development") {
-	target = "http://localhost:8080"
-}
+nw.Window.open(target, {}, win => {
+	win.resizeTo(800, 600)
+	if(isDevelopment) {
+		win.showDevTools()
+	} else {
+		win.enterFullscreen()
+	}
 
-nw.Window.open(target)
+	win.on('close', () => {
+		win.hide() // Pretend to be closed already
+		win.close(true) // then close it forcefully
+	})
+})

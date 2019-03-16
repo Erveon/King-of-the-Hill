@@ -11,7 +11,7 @@ export default {
 		MainMenu
 	},
 	mounted() {
-		document.addEventListener('contextmenu', event => event.preventDefault());
+		//document.addEventListener('contextmenu', event => event.preventDefault());
 	}
 }
 </script>
@@ -25,7 +25,7 @@ html, body {
 html {
 	overflow: hidden;
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: subpixel-antialiased;
 }
 
 .interface {

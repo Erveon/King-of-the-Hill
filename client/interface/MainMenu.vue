@@ -11,6 +11,7 @@
 
 <script>
 import Graphics from '@/graphics/Graphics'
+import isDesktop from '@/utils/isDesktop'
 
 export default {
 	name: 'MainMenu',
@@ -21,8 +22,24 @@ export default {
 				{
 					name: 'Play',
 					action: this.play
+				},
+				{
+					name: 'Explore',
+					action: this.explore
+				},
+				{
+					name: 'Options',
+					action: this.options
 				}
 			]
+		}
+	},
+	beforeMount() {
+		if(isDesktop()) {
+			this.menu.push({
+				name: 'Quit',
+				action: this.quit
+			})
 		}
 	},
 	methods: {
@@ -30,6 +47,18 @@ export default {
 			this.visible = false
 			Graphics.init()
 			Graphics.addCube()
+		},
+		explore() {
+			this.visible = false
+			Graphics.init()
+			Graphics.addCube()
+		},
+		options() {
+			alert("Nah")
+		},
+		quit() {
+			nw.Window.get().hide()
+			nw.Window.get().close(true)
 		}
 	}
 }
@@ -58,9 +87,11 @@ export default {
 				padding: 1rem .5rem;
 				border-radius: .5rem;
 				transition: .2s;
+				margin-bottom: .5rem;
 
 				&:hover {
 					background-color: lighten(#7272e9, 3%);
+					transform: scale(1.048);
 				}
 			}
 		}
